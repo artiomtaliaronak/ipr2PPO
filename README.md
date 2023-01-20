@@ -11,7 +11,7 @@ Cоздать приложение, которое позволяет просм
 
 ## Тестирование
 
-Чтобы запустить тестирование выберите MainUnitTest в java/com/artiomtaliaronak/ipr1ppo/MainUnitTest.java и нажмите "Выполнить 'MainUnitTest'"
+Чтобы запустить тестирование выберите MainUnitTest в java/com/artiomtaliaronak/ipr2ppo/MainUnitTest.java и нажмите "Выполнить 'MainUnitTest'"
 
 ## Фотография зачётки
 
