@@ -28,7 +28,7 @@ public class AddActivity extends AppCompatActivity {
             public void onClick(View v) {
                 AlbumDatabaseHelper myDB = new AlbumDatabaseHelper(AddActivity.this);
                 myDB.addAlbum(titleInput.getText().toString().trim(), authorInput.getText().toString().trim(),
-                        Integer.parseInt(trackInput.getText().toString().trim()));
+                        Integer.valueOf(trackInput.getText().toString().trim()));
             }
         });
     }

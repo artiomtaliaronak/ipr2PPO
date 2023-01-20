@@ -1,9 +1,11 @@
 package com.artiomtaliaronak.ipr2ppo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,11 +37,22 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CustomAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CustomAdapter.MyViewHolder holder, final int position) {
         holder.albumIdText.setText(String.valueOf(albumId.get(position)));
         holder.albumTitleText.setText(String.valueOf(albumTitle.get(position)));
         holder.albumAuthorText.setText(String.valueOf(albumAuthor.get(position)));
         holder.albumTrackText.setText(String.valueOf(albumTracks.get(position)));
+        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, UpdateActivity.class);
+                intent.putExtra("id", String.valueOf(albumId.get(position)));
+                intent.putExtra("title", String.valueOf(albumTitle.get(position)));
+                intent.putExtra("author", String.valueOf(albumAuthor.get(position)));
+                intent.putExtra("tracks", String.valueOf(albumTracks.get(position)));
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -50,6 +63,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView albumIdText, albumTitleText, albumAuthorText, albumTrackText;
+        LinearLayout mainLayout;
+
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -57,6 +72,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             albumTitleText = itemView.findViewById(R.id.albumTitleText);
             albumAuthorText = itemView.findViewById(R.id.albumAuthorText);
             albumTrackText = itemView.findViewById(R.id.albumTrackText);
+            mainLayout = itemView.findViewById(R.id.mainLayout);
         }
     }
 }
