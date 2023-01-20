@@ -1,5 +1,7 @@
 package com.artiomtaliaronak.ipr2ppo;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -11,7 +13,7 @@ import android.widget.Toast;
 public class UpdateActivity extends AppCompatActivity {
 
     EditText titleInput, authorInput, tracksInput;
-    Button updateButton;
+    Button updateButton, deleteButton;
     String id, title, author, tracks;
 
     @Override
@@ -23,7 +25,15 @@ public class UpdateActivity extends AppCompatActivity {
         authorInput = findViewById(R.id.authorInput2);
         tracksInput = findViewById(R.id.tracksInput2);
         updateButton = findViewById(R.id.updateButton);
+        deleteButton = findViewById(R.id.deleteButton);
+
         getAndSetIntentData();
+
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setTitle(title);
+        }
+
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -32,6 +42,16 @@ public class UpdateActivity extends AppCompatActivity {
                 author = authorInput.getText().toString().trim();
                 tracks = tracksInput.getText().toString().trim();
                 myDB.updateData(id, title, author, tracks);
+                finish();
+            }
+        });
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlbumDatabaseHelper myDB = new AlbumDatabaseHelper(UpdateActivity.this);
+                myDB.deleteOneRow(id);
+                finish();
             }
         });
 
