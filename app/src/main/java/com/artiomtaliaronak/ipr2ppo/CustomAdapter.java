@@ -1,5 +1,6 @@
 package com.artiomtaliaronak.ipr2ppo;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -18,9 +19,11 @@ import java.util.ArrayList;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
     Context context;
+    Activity activity;
     private ArrayList albumId, albumTitle, albumAuthor, albumTracks;
 
-    CustomAdapter(Context context, ArrayList albumId, ArrayList albumTitle, ArrayList albumAuthor, ArrayList albumTracks){
+    CustomAdapter(Activity activity, Context context, ArrayList albumId, ArrayList albumTitle, ArrayList albumAuthor, ArrayList albumTracks){
+        this.activity = activity;
         this.context = context;
         this.albumId = albumId;
         this.albumTitle = albumTitle;
@@ -50,7 +53,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 intent.putExtra("title", String.valueOf(albumTitle.get(position)));
                 intent.putExtra("author", String.valueOf(albumAuthor.get(position)));
                 intent.putExtra("tracks", String.valueOf(albumTracks.get(position)));
-                context.startActivity(intent);
+                activity.startActivityForResult(intent, 1);
             }
         });
     }

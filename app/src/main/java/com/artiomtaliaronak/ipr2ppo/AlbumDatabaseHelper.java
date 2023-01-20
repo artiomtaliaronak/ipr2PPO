@@ -21,7 +21,7 @@ public class AlbumDatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_AUTHOR = "album_author";
     private static final String COLUMN_TRACKS = "album_tracks";
 
-    public AlbumDatabaseHelper(@Nullable Context context){
+    AlbumDatabaseHelper(@Nullable Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
     }
@@ -64,4 +64,22 @@ public class AlbumDatabaseHelper extends SQLiteOpenHelper {
         }
         return cursor;
     }
+
+    void updateData(String row_id, String title, String author, String tracks){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_TITLE, title);
+        cv.put(COLUMN_AUTHOR, author);
+        cv.put(COLUMN_TRACKS, tracks);
+
+        long result = db.update(TABLE_NAME, cv, "_id=?", new String[]{row_id});
+        if (result == -1){
+            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(context, "Updated", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
 }

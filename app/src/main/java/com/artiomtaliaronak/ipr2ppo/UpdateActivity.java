@@ -23,16 +23,23 @@ public class UpdateActivity extends AppCompatActivity {
         authorInput = findViewById(R.id.authorInput2);
         tracksInput = findViewById(R.id.tracksInput2);
         updateButton = findViewById(R.id.updateButton);
+        getAndSetIntentData();
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                AlbumDatabaseHelper myDB = new AlbumDatabaseHelper(UpdateActivity.this);
+                title = titleInput.getText().toString().trim();
+                author = authorInput.getText().toString().trim();
+                tracks = tracksInput.getText().toString().trim();
+                myDB.updateData(id, title, author, tracks);
             }
         });
-        getAndSetIntentDate();
+
+
+
     }
 
-    void getAndSetIntentDate(){
+    void getAndSetIntentData(){
         if(getIntent().hasExtra("id") && getIntent().hasExtra("title") && getIntent().hasExtra("author") && getIntent().hasExtra("tracks")){
             id = getIntent().getStringExtra("id");
             title = getIntent().getStringExtra("title");
