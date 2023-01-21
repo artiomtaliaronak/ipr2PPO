@@ -9,10 +9,6 @@ Cоздать приложение, которое позволяет просм
 
 Скачать проект, открыть его в ide и запустить в эмуляторе. Проект раcчитан на совместимость с не менее чем Andriod 5.0
 
-## Тестирование
-
-Чтобы запустить тестирование выберите MainUnitTest в java/com/artiomtaliaronak/ipr2ppo/MainUnitTest.java и нажмите "Выполнить 'MainUnitTest'"
-
 ## Фотография зачётки
 
 ![alt text](https://i.imgur.com/ELzsKCm.png)
