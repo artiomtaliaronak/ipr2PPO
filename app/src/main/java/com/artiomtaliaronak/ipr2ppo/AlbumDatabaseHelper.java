@@ -72,22 +72,12 @@ public class AlbumDatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_AUTHOR, author);
         cv.put(COLUMN_TRACKS, tracks);
 
-        long result = db.update(TABLE_NAME, cv, "_id=?", new String[]{row_id});
-        if (result == -1){
-            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(context, "Updated", Toast.LENGTH_SHORT).show();
-        }
+        db.update(TABLE_NAME, cv, "_id=?", new String[]{row_id});
     }
 
     void deleteOneRow(String row_id){
         SQLiteDatabase db = this.getWritableDatabase();
-        long result = db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
-        if (result == -1){
-            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show();
-        }
+        db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
     }
 
 
